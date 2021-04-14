@@ -56,7 +56,7 @@ def delete(customer_id):
     is_deleted = conversation_controller.remove_customer(customer_id)
     if is_deleted:
         return make_response(
-            f'Deleted customer wit id: {customer_id}', 200
+            f'Deleted customer with id: {customer_id}', 200
         )
     else:
         abort(404, f'Customer with id `{customer_id}` not found')
