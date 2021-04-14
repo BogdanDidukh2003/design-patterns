@@ -15,6 +15,11 @@ class ConversationController:
     def add_customer(self, name, email, phone_number, address, operator_id=None):
         return self.customer_manager.add_customer(name, email, phone_number, address, operator_id)
 
+    def update_customer(self, customer_id, name, email, phone_number, address,
+                        operator_id=None):
+        return self.customer_manager.update_customer(
+            customer_id, name, email, phone_number, address, operator_id)
+
     def remove_customer(self, customer_id):
         return self.customer_manager.remove_customer(customer_id)
 
