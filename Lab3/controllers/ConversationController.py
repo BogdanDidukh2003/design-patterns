@@ -30,10 +30,15 @@ class ConversationController:
         return self.operator_manager.get_all_operators()
 
     def add_operator(self, name, email, phone_number, address, is_available=True):
-        self.operator_manager.add_operator(name, email, phone_number, address, is_available)
+        return self.operator_manager.add_operator(name, email, phone_number, address, is_available)
+
+    def update_operator(self, operator_id, name, email, phone_number, address,
+                        is_available=None):
+        return self.operator_manager.update_operator(
+            operator_id, name, email, phone_number, address, is_available)
 
     def remove_operator(self, operator_id):
-        self.operator_manager.remove_operator(operator_id)
+        return self.operator_manager.remove_operator(operator_id)
 
     def add_conversation(self, customer):
         self.conversation_manager.add_conversation(customer)

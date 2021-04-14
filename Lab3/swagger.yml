@@ -140,3 +140,133 @@ paths:
       responses:
         200:
           description: "Successfully deleted a customer"
+
+  /operator:
+    get:
+      operationId: "endpoints.operator.read_all"
+      tags:
+        - "Operator"
+      summary: "GET all method for 'operator' table"
+      description: "Read the list of operators"
+      responses:
+        200:
+          description: "Successfully read operator list"
+          schema:
+            type: array
+            items:
+              properties:
+                id:
+                  type: "integer"
+                email:
+                  type: "string"
+                name:
+                  type: "string"
+                phone_number:
+                  type: "string"
+                address:
+                  type: "string"
+                is_available:
+                  type: "boolean"
+    post:
+      operationId: "endpoints.operator.create"
+      tags:
+        - "Operator"
+      summary: "POST method for 'operator' table"
+      description: "Create a new operator"
+      parameters:
+        - name: operator
+          in: body
+          description: "Operator to add"
+          required: True
+          schema:
+            type: object
+            properties:
+              name:
+                type: "string"
+              email:
+                type: "string"
+              phone_number:
+                type: "string"
+              address:
+                type: "string"
+              is_available:
+                type: ["null", "boolean"]
+      responses:
+        201:
+          description: "Successfully added new operator"
+
+  /operator/{operator_id}:
+    get:
+      operationId: "endpoints.operator.read_one"
+      tags:
+        - "Operator"
+      summary: "GET one method for 'operator' table"
+      description: "Read one operator from the operator table"
+      parameters:
+        - name: operator_id
+          in: path
+          description: "Operator ID"
+          type: integer
+          required: True
+      responses:
+        200:
+          description: "Successfully read operator"
+          schema:
+            properties:
+              id:
+                type: "integer"
+              email:
+                type: "string"
+              name:
+                type: "string"
+              phone_number:
+                type: "string"
+              address:
+                type: "string"
+              is_available:
+                type: "boolean"
+    put:
+      operationId: "endpoints.operator.update"
+      tags:
+        - "Operator"
+      summary: "UPDATE method for 'operator' table"
+      description: "Update an operator in the operator table"
+      parameters:
+        - name: operator_id
+          in: path
+          description: "Operator ID"
+          type: integer
+          required: True
+        - name: operator
+          in: body
+          schema:
+            type: object
+            properties:
+              name:
+                type: "string"
+              email:
+                type: "string"
+              phone_number:
+                type: "string"
+              address:
+                type: "string"
+              is_available:
+                type: [ "null", "boolean" ]
+      responses:
+        200:
+          description: "Successfully updated operator"
+    delete:
+      operationId: "endpoints.operator.delete"
+      tags:
+        - "Operator"
+      summary: "DELETE method for 'operator' table"
+      description: "Delete an operator"
+      parameters:
+        - name: operator_id
+          in: path
+          description: "Operator ID"
+          type: integer
+          required: True
+      responses:
+        200:
+          description: "Successfully deleted an operator"

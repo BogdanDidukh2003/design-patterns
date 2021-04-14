@@ -47,7 +47,8 @@ class CustomerManager:
                 customer.email = email
                 customer.phone_number = phone_number
                 customer.address = address
-                customer.operator_id = operator_id
+                if operator_id is not None:
+                    customer.operator_id = operator_id
                 s.add(customer)
                 customer_dict = customer.get_personal_info()
                 s.commit()
