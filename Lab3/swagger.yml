@@ -1,0 +1,142 @@
+swagger: "2.0"
+info:
+  description: This is the swagger file for the server code
+  version: "1.0.0"
+  title: Design-patterns REST API
+consumes:
+  - "application/json"
+produces:
+  - "application/json"
+
+basePath: "/api"
+
+paths:
+  /customer:
+    get:
+      operationId: "endpoints.customer.read_all"
+      tags:
+        - "Customer"
+      summary: "GET all method for 'customer' table"
+      description: "Read the list of customers"
+      responses:
+        200:
+          description: "Successfully read customer list"
+          schema:
+            type: array
+            items:
+              properties:
+                id:
+                  type: "integer"
+                email:
+                  type: "string"
+                name:
+                  type: "string"
+                phone_number:
+                  type: "string"
+                address:
+                  type: "string"
+                operator_id:
+                  type: "integer"
+    post:
+      operationId: "endpoints.customer.create"
+      tags:
+        - "Customer"
+      summary: "POST method for 'customer' table"
+      description: "Create a new customer"
+      parameters:
+        - name: customer
+          in: body
+          description: "Customer to add"
+          required: True
+          schema:
+            type: object
+            properties:
+              name:
+                type: "string"
+              email:
+                type: "string"
+              phone_number:
+                type: "string"
+              address:
+                type: "string"
+              operator_id:
+                type: ["null", "integer"]
+      responses:
+        201:
+          description: "Successfully added new customer"
+
+  /customer/{customer_id}:
+    get:
+      operationId: "endpoints.customer.read_one"
+      tags:
+        - "Customer"
+      summary: "GET one method for 'customer' table"
+      description: "Read one customer from the customer table"
+      parameters:
+        - name: customer_id
+          in: path
+          description: "Customer ID"
+          type: integer
+          required: True
+      responses:
+        200:
+          description: "Successfully read customer"
+          schema:
+            properties:
+              id:
+                type: "integer"
+              email:
+                type: "string"
+              name:
+                type: "string"
+              phone_number:
+                type: "string"
+              address:
+                type: "string"
+              operator_id:
+                type: "integer"
+    put:
+      operationId: "endpoints.customer.update"
+      tags:
+        - "Customer"
+      summary: "UPDATE method for 'customer' table"
+      description: "Update a customer in the customer table"
+      parameters:
+        - name: customer_id
+          in: path
+          description: "Customer ID"
+          type: integer
+          required: True
+        - name: customer
+          in: body
+          schema:
+            type: object
+            properties:
+              name:
+                type: "string"
+              email:
+                type: "string"
+              phone_number:
+                type: "string"
+              address:
+                type: "string"
+              operator_id:
+                type: [ "null", "integer" ]
+      responses:
+        200:
+          description: "Successfully updated customer"
+    delete:
+      operationId: "endpoints.customer.delete"
+      tags:
+        - "Customer"
+      summary: "DELETE method for 'customer' table"
+      description: "Delete a customer"
+      parameters:
+        - name: customer_id
+          in: path
+          description: "Customer ID"
+          type: integer
+          required: True
+      responses:
+        200:
+          description: "Successfully deleted a customer"
