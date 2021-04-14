@@ -270,3 +270,79 @@ paths:
       responses:
         200:
           description: "Successfully deleted an operator"
+
+  /conversation:
+    get:
+      operationId: "endpoints.conversation.read_all"
+      tags:
+        - "Conversation"
+      summary: "GET all conversations"
+      description: "Read the list of conversations"
+      responses:
+        200:
+          description: "Successfully read conversation list"
+          schema:
+            type: array
+            items:
+              properties:
+                customer_id:
+                  type: "integer"
+                operator_id:
+                  type: "integer"
+    post:
+      operationId: "endpoints.conversation.create"
+      tags:
+        - "Conversation"
+      summary: "POST method for conversations"
+      description: "Create a new conversation"
+      parameters:
+        - name: conversation
+          in: body
+          description: "Conversation to add"
+          required: True
+          schema:
+            type: object
+            properties:
+              customer_id:
+                type: "integer"
+      responses:
+        201:
+          description: "Successfully added new conversation"
+
+  /conversation/{customer_id}:
+    get:
+      operationId: "endpoints.conversation.read_one"
+      tags:
+        - "Conversation"
+      summary: "GET one conversation"
+      description: "Read one conversation"
+      parameters:
+        - name: customer_id
+          in: path
+          description: "Customer ID"
+          type: integer
+          required: True
+      responses:
+        200:
+          description: "Successfully read conversation"
+          schema:
+            properties:
+              customer_id:
+                type: "integer"
+              operator_id:
+                type: "integer"
+    delete:
+      operationId: "endpoints.conversation.delete"
+      tags:
+        - "Conversation"
+      summary: "DELETE method for conversations"
+      description: "Delete a conversation"
+      parameters:
+        - name: customer_id
+          in: path
+          description: "Customer ID"
+          type: integer
+          required: True
+      responses:
+        200:
+          description: "Successfully deleted a conversation"

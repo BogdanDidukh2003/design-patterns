@@ -40,8 +40,14 @@ class ConversationController:
     def remove_operator(self, operator_id):
         return self.operator_manager.remove_operator(operator_id)
 
-    def add_conversation(self, customer):
-        self.conversation_manager.add_conversation(customer)
+    def get_conversation(self, customer_id):
+        return self.conversation_manager.get_conversation(customer_id)
 
-    def remove_conversation(self, customer):
-        self.conversation_manager.remove_conversation(customer)
+    def get_all_conversations(self):
+        return self.conversation_manager.get_all_conversations()
+
+    def add_conversation(self, customer_id):
+        return self.conversation_manager.add_conversation(customer_id)
+
+    def remove_conversation(self, customer_id):
+        return self.conversation_manager.remove_conversation(customer_id)
